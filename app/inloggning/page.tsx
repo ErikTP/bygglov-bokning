@@ -11,11 +11,41 @@ import Link from "next/link"
 //react icons
 import { FaGithub } from "react-icons/fa"
 import { FcGoogle } from "react-icons/fc"
+import { useState } from "react"
+import { signIn } from "next-auth/react"
+import { useRouter } from "next/navigation"
+import { toast } from "sonner"
+import { TriangleAlert } from "lucide-react"
 
 const inloggning = () => {
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [pending, setPending] = useState(false);
+    const router = useRouter()
+    const [error, setError] = useState("");
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setPending(true);
+        const res = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+        });
+        if (res?.ok) {
+        router.push("/");
+        toast.success("login successful");
+        } else if (res?.status === 401) {
+        setError("Invalid Credentials");
+        setPending(false);
+        } else {
+        setError("Something went wrong");
+        }
+    };
+
   return (
     <div className="h-full flex items-center justify-center bg-[#18153f]">
-        <Card className="w-full max-w-[600px] p-10 shadow-xl">
+        <Card className="w-full max-w-150 p-10 shadow-xl">
             <CardHeader>
                 <CardTitle className="text-5xl font-bold text-center">
                     Logga in
@@ -24,32 +54,38 @@ const inloggning = () => {
                     Använd Email eller Bank ID för att logga in
                 </CardDescription>
             </CardHeader>
+            {!!error && (
+                    <div className="bg-destructive/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-destructive mb-6">
+                        <TriangleAlert />
+                        <p>{error}</p>
+                    </div>
+                )}
             <CardContent className="space-y-6">
-                <form action="" className=" m-4 flex flex-col gap-6"> 
+                <form onSubmit={handleSubmit} className=" m-4 flex flex-col gap-6"> 
                     <Input 
                         className="h-14" 
                         type="email"
-                        disabled= {false}
+                        disabled= {pending}
                         placeholder="Email"
-                        value={""}
-                        onChange={()=>{}}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         required
                     />   
 
                     <Input 
                         className="h-14" 
                         type="password"
-                        disabled= {false}
+                        disabled= {pending}
                         placeholder="Lösenord"
-                        value={""}
-                        onChange={()=>{}}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         required
                     />   
                      
                     <Button 
                         className="h-14 w-full"
                         size="lg"
-                        disabled={false}
+                        disabled={pending}
                     > Logga in
                     </Button>
                 </form>
