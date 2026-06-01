@@ -43,6 +43,14 @@ const inloggning = () => {
         }
     };
 
+    const handleProvider = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    value: "github" | "google"
+  ) => {
+    event.preventDefault();
+    signIn(value, { callbackUrl: "/" });
+  };
+
   return (
     <div className="h-full flex items-center justify-center bg-[#18153f]">
         <Card className="w-full max-w-150 p-10 shadow-xl">
@@ -103,7 +111,7 @@ const inloggning = () => {
                     </Button>
                     <Button
                     disabled={false}
-                    onClick={() => {}}
+                    onClick={(e) => handleProvider(e,"github")}
                     variant="outline"
                     size="lg"
                     className="h-16 w-16 bg-slate-300 hover:bg-slate-400 hover:scale-110"

@@ -15,6 +15,7 @@ import { useState } from "react"
 import {toast} from "sonner"
 import { useRouter } from "next/navigation"
 import { TriangleAlert } from "lucide-react"
+import { signIn } from "next-auth/react"
 
 
 const registrering = () => {
@@ -50,6 +51,14 @@ const registrering = () => {
       setError(data.message);
       setPending(false);
     }
+  };
+
+    const handleProvider = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    value: "github" | "google"
+  ) => {
+    event.preventDefault();
+    signIn(value, { callbackUrl: "/" });
   };
 
   return (
@@ -131,7 +140,7 @@ const registrering = () => {
                     </Button>
                     <Button
                     disabled={false}
-                    onClick={() => {}}
+                    onClick={(e) => handleProvider(e, "github")}
                     variant="outline"
                     size="lg"
                     className="h-16 w-16 bg-slate-300 hover:bg-slate-400 hover:scale-110"
