@@ -1,3 +1,4 @@
+"use client"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -6,13 +7,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useSession, signOut } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { Loader } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 const UserButton = () => {
-  const router = useRouter();
   const { data: session, status } = useSession();
 
   if (status === "loading") {
@@ -21,11 +20,11 @@ const UserButton = () => {
 
   const avatarFallback = session?.user?.name?.charAt(0).toUpperCase();
     const handleSignOut = async () => {
-        await signOut({
-            redirect: false,
-        });
-        router.push("/")
-}
+    await signOut({
+      callbackUrl: "/",
+    });
+  };
+
   return (
     <nav>
       {session ? (

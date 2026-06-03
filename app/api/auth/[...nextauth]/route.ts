@@ -1,11 +1,11 @@
-import NextAuth from "next-auth";
+import NextAuth, { type NextAuthOptions } from "next-auth";
 import User from "@/models/user";
 import connectToDatabase from "@/lib/mongodb";
 import bcrypt from "bcryptjs";
 import CredentialsProvider from "next-auth/providers/credentials";
 import Github from "next-auth/providers/github";
 
-const handler = NextAuth({
+export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
     },
@@ -52,25 +52,37 @@ const handler = NextAuth({
                     await User.create({
                         name: profile?.name,
                         email: profile?.email,
+                        role: "user",
                     })
                 }
             }
             return true;
               },
 
-        async jwt({ token, user }) {
-            if (user) {
-                token.id = user.id;
-                token.email = user.email;
+        async jwt({ token }) {
+
+            await connectToDatabase();
+
+            const dbUser = await User.findOne({
+                email: token.email
+            });
+
+            if (dbUser) {
+                token.role = dbUser.role;
             }
+
             return token;
-        },
+            },
+
         async session({ session, token }) {
             if (token) {
                 session.user = {
                     email: token.email,
                     name: token.name,
                     image: token.picture,
+                    role: token.role,
+                } as typeof session.user & {
+                    role: string;
                 };
             };
             return session;
@@ -84,5 +96,7 @@ const handler = NextAuth({
     
 
   
-});
+};
+const handler = NextAuth(authOptions);
+
 export { handler as GET, handler as POST };

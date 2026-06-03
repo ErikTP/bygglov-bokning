@@ -16,6 +16,7 @@ import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
 import { TriangleAlert } from "lucide-react"
+import { getSession } from "next-auth/react";
 
 const inloggning = () => {
     const [email, setEmail] = useState<string>("");
@@ -33,8 +34,17 @@ const inloggning = () => {
         password,
         });
         if (res?.ok) {
-        router.push("/");
+
+        const session = await getSession();
+
+        if ((session?.user as any)?.role === "admin") {
+            router.push("/admin");
+        } else {
+            router.push("/dashboard");
+        }
+
         toast.success("login successful");
+
         } else if (res?.status === 401) {
         setError("Invalid Credentials");
         setPending(false);
@@ -48,7 +58,7 @@ const inloggning = () => {
     value: "github" | "google"
   ) => {
     event.preventDefault();
-    signIn(value, { callbackUrl: "/" });
+    signIn(value, { callbackUrl: "/redirect" });
   };
 
   return (

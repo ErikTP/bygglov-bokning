@@ -58,7 +58,7 @@ const registrering = () => {
     value: "github" | "google"
   ) => {
     event.preventDefault();
-    signIn(value, { callbackUrl: "/" });
+    signIn(value, { callbackUrl: "/redirect" });
   };
 
   return (
