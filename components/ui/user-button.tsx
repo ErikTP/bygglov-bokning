@@ -48,14 +48,23 @@ const UserButton = () => {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <div className="flex justify-end p-4 gap-4">
-          <Button>
-            <Link href="inloggning">Sign in</Link>
-          </Button>
-          <Button>
-            <Link href="registrering">Sign up</Link>
-          </Button>
-        </div>
+        <div className="flex justify-end gap-3">
+        <Button
+          asChild
+          size="sm"
+          className="!bg-[#29547B] !text-white hover:!bg-[#111827] hover:!-translate-y-0.5 hover:!shadow-md"
+        >
+          <Link href="/inloggning">Logga in</Link>
+        </Button>
+
+        <Button
+          asChild
+          size="sm"
+          className="!bg-[#29547B] !text-white hover:!bg-[#111827] hover:!-translate-y-0.5 hover:!shadow-md"
+        >
+          <Link href="/registrering">Anslut</Link>
+        </Button>
+      </div>
       )}
     </nav>
   );
