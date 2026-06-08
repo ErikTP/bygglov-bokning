@@ -69,7 +69,7 @@ const registrering = () => {
                     Registrera dig
                 </CardTitle>
                 <CardDescription className="text-xl text-center text-muted-foreground mt-2">
-                    Använd Email eller Bank ID för att skapa account
+                    Använd Email eller Bank ID för att skapa konto
                 </CardDescription>
             </CardHeader>
             {!!error && (

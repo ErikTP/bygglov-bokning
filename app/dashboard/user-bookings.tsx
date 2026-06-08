@@ -89,7 +89,7 @@ export default function UserBookings({
           }`}
         >
           <Clock size={16} />
-          {isAccepted ? "Möte accepterat" : "Väntar på granskning"}
+          {isAccepted ? "Mötet är accepterat" : "Väntar på granskning"}
         </div>
 
         <div className="flex gap-5">
@@ -118,7 +118,7 @@ export default function UserBookings({
           <MeetingInfo
             icon={<CalendarDays size={25} />}
             label="Status"
-            value={isAccepted ? "Tid bokad" : "Inväntar rådgivare"}
+            value={isAccepted ? "Projekt granskad" : "Inväntar rådgivare"}
           />
 
           <MeetingInfo
@@ -135,24 +135,33 @@ export default function UserBookings({
         </div>
 
         {isAccepted ? (
-          <AcceptedMeeting booking={booking} />
+          <AcceptedMeeting
+            booking={booking}
+            onCancel={handleCancelBooking}
+          />
         ) : (
-          <PendingBooking onCancel={handleCancelBooking} />
+          <PendingBooking
+            onCancel={handleCancelBooking}
+          />
         )}
       </div>
     </section>
   );
 }
 
-function PendingBooking({ onCancel }: { onCancel: () => void }) {
+function PendingBooking({
+  onCancel,
+}: {
+  onCancel: () => void;
+}) {
   return (
     <div className="mt-7 grid gap-6 md:grid-cols-[1fr_280px] md:items-center">
       <div className="flex items-start gap-4 rounded-xl bg-[#F1F5F9] p-5 text-[#4D5662]">
         <Info className="mt-1 size-6 text-[#29547B]" />
+
         <p className="text-base leading-7">
           Din bokningsförfrågan har skickats och inväntar rådgivarens
-          granskning. När rådgivaren accepterar ärendet visas mötestid och länk
-          här.
+          granskning. När rådgivaren accepterar ärendet visas videomötet här.
         </p>
       </div>
 
@@ -168,7 +177,13 @@ function PendingBooking({ onCancel }: { onCancel: () => void }) {
   );
 }
 
-function AcceptedMeeting({ booking }: { booking: UserBooking }) {
+function AcceptedMeeting({
+  booking,
+  onCancel,
+}: {
+  booking: UserBooking;
+  onCancel: () => void;
+}) {
   const hasMeetingUrl = Boolean(booking.meetingUrl);
 
   return (
@@ -199,22 +214,23 @@ function AcceptedMeeting({ booking }: { booking: UserBooking }) {
         />
       </div>
 
-      <div className="text-center">
+      <div className="mt-6 flex gap-4">
         <a
-          href={hasMeetingUrl ? booking.meetingUrl : undefined}
-          className={`flex h-14 w-full items-center justify-center gap-3 rounded-xl text-lg font-semibold transition ${
-            hasMeetingUrl
-              ? "bg-[#29547B] text-white hover:bg-[#02060A]"
-              : "pointer-events-none cursor-not-allowed bg-[#E5E7EB] text-[#9CA3AF]"
-          }`}
+          href={booking.meetingUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex flex-1 items-center justify-center gap-2 rounded-xl !bg-[#29547B] px-6 py-3 text-white hover:!bg-[#02060A]"
         >
-          <Video size={22} />
+          <Video size={20} />
           Starta videomöte
         </a>
 
-        <p className="mt-3 text-sm text-[#667085]">
-          Knappen blir aktiv när rådgivaren har lagt till möteslänken.
-        </p>
+        <button
+          onClick={onCancel}
+          className="rounded-xl border border-[#D8E0E8] px-6 py-3 font-semibold hover:bg-[#F3F4F6]"
+        >
+          Avbryt bokning
+        </button>
       </div>
     </div>
   );
