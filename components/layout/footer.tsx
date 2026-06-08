@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { House } from "lucide-react";
+import Image from "next/image";
 import {
   FaLinkedinIn,
   FaInstagram,
@@ -16,9 +16,13 @@ const Footer = () => {
 
           <div>
             <div className="flex items-center gap-3">
-              <div className="flex size-11 items-center justify-center rounded-md bg-white text-[#02060A]">
-                <House size={24} />
-              </div>
+              <Image
+                src="/images/Bygglov-logo.png"
+                alt="Bygglov"
+                width={44}
+                height={44}
+                className="h-11 w-11 object-contain drop-shadow-[0_30px_30px_rgba(0,0,0,0.9)]"
+              />
 
               <span className="text-3xl font-bold">
                 Bygglov

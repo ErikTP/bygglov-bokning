@@ -10,6 +10,7 @@ import { useSession, signOut } from "next-auth/react";
 import { Loader } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 const UserButton = () => {
   const { data: session, status } = useSession();
@@ -48,21 +49,30 @@ const UserButton = () => {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <div className="flex justify-end gap-3">
+      <div className="flex justify-end gap-3">
         <Button
           asChild
-          size="sm"
-          className="!bg-[#29547B] !text-white hover:!bg-[#111827] hover:!-translate-y-0.5 hover:!shadow-md"
+          size="lg"
+          className="!border !border-[#D8E0E8] !bg-white !text-[#17212F] hover:!-translate-y-0.5 hover:!bg-[#F8FAFC] hover:!shadow-md"
         >
-          <Link href="/inloggning">Logga in</Link>
+          <Link href="/inloggning" className="flex items-center gap-2">
+            <Image
+              src="/images/Bank-ID.png"
+              alt="BankID"
+              width={24}
+              height={24}
+              className="h-6 w-6 object-contain"
+            />
+            Logga in
+          </Link>
         </Button>
 
         <Button
           asChild
-          size="sm"
-          className="!bg-[#29547B] !text-white hover:!bg-[#111827] hover:!-translate-y-0.5 hover:!shadow-md"
+          size="lg"
+          className="!bg-[#29547B] !text-white hover:!-translate-y-0.5 hover:!bg-[#214663] hover:!shadow-md"
         >
-          <Link href="/registrering">Anslut</Link>
+          <Link href="/registrering">Anslut dig</Link>
         </Button>
       </div>
       )}
