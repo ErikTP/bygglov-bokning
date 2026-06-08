@@ -77,7 +77,7 @@ if (mobile) {
     <div className="flex flex-col gap-1.5">
       <Link
         href="/inloggning"
-        className="flex h-8 items-center justify-center gap-2 rounded-md border border-[#D8E0E8] bg-white px-2 text-xs font-semibold text-[#17212F] transition hover:bg-[#F8FAFC]"
+        className="flex h-8 items-center justify-center gap-2 rounded-md border border-[#D8E0E8] bg-white px-2 text-xs font-semibold text-[#17212F] transition hover:!bg-[#F8FAFC]"
       >
         <Image
           src="/images/Bank-ID.png"
@@ -91,7 +91,7 @@ if (mobile) {
 
       <Link
         href="/registrering"
-        className="flex h-8 items-center justify-center rounded-md bg-[#29547B] px-2 text-xs font-semibold text-white transition hover:bg-[#214663]"
+        className="flex h-8 items-center justify-center rounded-md !bg-[#29547B] px-2 text-xs font-semibold text-white transition hover:!bg-[#02060A]"
       >
         Anslut dig
       </Link>

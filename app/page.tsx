@@ -50,7 +50,7 @@ export default function Home() {
               size="lg"
               className="mt-8 !bg-[#29547B] !text-white hover:!bg-[#02060A] hover:!shadow-md"
             >
-              <Link href="/dashboard" className="flex items-center gap-3">
+              <Link href="#bokning-sektion" className="flex items-center gap-3">
                 Hitta expert
                 <ArrowRight size={18} />
               </Link>
@@ -120,7 +120,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="pb-20">
+      <section id="bokning-sektion" className="pb-20">
         <div className="mx-auto max-w-7xl px-8">
           <SectionLine
             left="BOKNINGSSYSTEM"

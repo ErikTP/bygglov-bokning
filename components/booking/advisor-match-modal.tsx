@@ -140,7 +140,8 @@ export default function AdvisorMatchModal({ open, onClose, onSave }: Props) {
         </div>
 
         <button
-         className="mt-20 w-full rounded-xl bg-[#29547B] py-5 text-xl font-bold text-white shadow-md transition-all duration-200 hover:bg-[#02060A] hover:shadow-lg"
+          onClick={() => onSave(form)}
+          className="mt-20 w-full rounded-xl bg-[#29547B] py-5 text-xl font-bold text-white shadow-md transition-all duration-200 hover:bg-[#02060A] hover:shadow-lg"
         >
           Matcha rådgivare
         </button>

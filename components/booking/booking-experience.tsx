@@ -48,7 +48,12 @@ export default function BookingExperience() {
   const [projectData, setProjectData] = useState<ProjectFormData | null>(null);
   const [matchData, setMatchData] = useState<MatchData | null>(null);
 
-  const canBook = Boolean(projectData || matchData);
+  const [selectedAdvisorName, setSelectedAdvisorName] = useState<string | null>(
+  null
+  );
+  const [isBooking, setIsBooking] = useState(false);
+
+  const canBook = Boolean((projectData || matchData) && selectedAdvisorName);
 
   const matchedAdvisors = useMemo(() => {
     if (!matchData) return advisors;
@@ -174,20 +179,25 @@ export default function BookingExperience() {
             <div className="h-full max-h-[430px] space-y-4 overflow-y-auto pr-2">
               {visibleAdvisors.length > 0 ? (
                 visibleAdvisors.map((advisor) => (
-                  <div
-                    key={advisor.name}
-                    className="flex items-center gap-4 rounded-lg border border-[#C8D2DC] bg-white p-4"
-                  >
-                    <div className="flex size-11 items-center justify-center rounded-full bg-[#EEF4FA] text-[#29547B]">
-                      <UserRound size={22} />
-                    </div>
-
-                    <div>
-                      <h4 className="font-bold">{advisor.name}</h4>
-                      <p className="text-sm">{advisor.role}</p>
-                      <p className="text-sm">{advisor.areas.join(" • ")}</p>
-                    </div>
+                  <button
+                  key={advisor.name}
+                  onClick={() => setSelectedAdvisorName(advisor.name)}
+                  className={`flex w-full items-center gap-4 rounded-lg border bg-white p-4 text-left transition hover:bg-[#F8FAFC] ${
+                    selectedAdvisorName === advisor.name
+                      ? "border-[#29547B] ring-2 ring-[#29547B]/20"
+                      : "border-[#C8D2DC]"
+                  }`}
+                >
+                  <div className="flex size-11 items-center justify-center rounded-full bg-[#EEF4FA] text-[#29547B]">
+                    <UserRound size={22} />
                   </div>
+
+                  <div>
+                    <h4 className="font-bold">{advisor.name}</h4>
+                    <p className="text-sm">{advisor.role}</p>
+                    <p className="text-sm">{advisor.areas.join(" • ")}</p>
+                  </div>
+                </button>
                 ))
               ) : (
                 <div className="rounded-lg border border-[#C8D2DC] bg-white p-5 text-sm text-[#667085]">
@@ -200,15 +210,55 @@ export default function BookingExperience() {
 
           <div className="p-5">
             <button
-              disabled={!canBook}
-              className="w-full rounded-xl bg-[#29547B] px-6 py-8 text-center text-white shadow-md transition-all duration-200 hover:bg-[#214663] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:bg-[#29547B] disabled:hover:shadow-md"
+              disabled={!canBook || isBooking}
+              onClick={async () => {
+                const selectedAdvisor = visibleAdvisors.find(
+                  (advisor) => advisor.name === selectedAdvisorName
+                );
+
+                if (!selectedAdvisor) return;
+
+                try {
+                  setIsBooking(true);
+
+                  const response = await fetch("/api/bookings", {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                      advisorName: selectedAdvisor.name,
+                      advisorRole: selectedAdvisor.role,
+                      service: matchData?.service || "Bygglovsrådgivning",
+                      category: matchData?.category || "Ej angiven",
+                      municipality:
+                        matchData?.municipality || projectData?.municipality || "Ej angiven",
+                      projectDescription: projectData?.description || "",
+                    }),
+                  });
+
+                  if (!response.ok) {
+                    throw new Error("Kunde inte skapa bokning");
+                  }
+
+                  window.location.href = "/dashboard";
+                } catch (error) {
+                  console.error(error);
+                  alert("Något gick fel när bokningen skulle skickas.");
+                } finally {
+                  setIsBooking(false);
+                }
+              }}
+              className="w-full rounded-xl bg-[#29547B] px-6 py-8 text-center text-white shadow-md transition-all duration-200 hover:bg-[#02060A] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-[#29547B]"
             >
               <Calendar className="mx-auto mb-3 size-8" />
+
               <span className="block text-lg font-bold">
-                Boka videomöte med rådgivare
+                {isBooking ? "Skickar bokning..." : "Boka videomöte med rådgivare"}
               </span>
+
               <span className="mt-2 block text-sm text-white/85">
-                Få svar inom 24 timmar. En rådgivare läser ditt ärende.
+                Välj rådgivare och skicka bokningsförfrågan.
               </span>
             </button>
           </div>
