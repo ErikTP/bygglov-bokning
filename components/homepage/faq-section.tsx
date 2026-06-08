@@ -55,32 +55,32 @@ const questions = [
   {
     question: "Är rådgivningen verkligen kostnadsfri?",
     answer:
-      "Ja. Den första rådgivningen är kostnadsfri och hjälper dig förstå vilka regler som gäller för ditt projekt.",
+      "Ja. Den initiala rådgivningen är gratis och utan förpliktelser.",
   },
   {
     question: "Hur snabbt får jag svar?",
     answer:
-      "Normalt inom 24 timmar. Ofta återkopplar en rådgivare betydligt snabbare.",
+      "Vi återkommer normalt inom 1 timme på vardagar, senast inom 24 timmar. Skickar du in ditt ärende under en helg svarar vi senast på måndagen.",
   },
   {
     question: "Vad ska jag bifoga i mitt meddelande?",
     answer:
-      "Beskriv projektet så tydligt som möjligt. Bilder, skisser och ritningar hjälper rådgivaren att ge bättre vägledning.",
+      "Skriv kort vad du vill bygga, var fastigheten ligger och om du har ritningar eller skisser. Mer information ger snabbare och mer träffsäker rådgivning.",
   },
   {
     question: "Vilka typer av projekt kan ni hjälpa till med?",
     answer:
-      "Nybyggnation, tillbyggnad, attefallshus, friggebodar, fasadändringar, kontrollplaner och mycket mer.",
+      "Vi hjälper privatpersoner och företag med allt från attefallshus och tillbyggnader till nybyggnation, anmälningsärenden och överklagan av kommunens beslut.",
   },
   {
     question: "Behöver jag anlita er efter rådgivningen?",
     answer:
-      "Nej. Du väljer själv om du vill gå vidare efter rådgivningen.",
+      "Nej. Rådgivningen är fristående. Vill du gå vidare kan vi matcha dig med en expert i din kommun – men valet är alltid ditt.",
   },
   {
     question: "Vem är det jag pratar med?",
     answer:
-      "Du matchas med en rådgivare vars kompetens passar ditt specifika projekt.",
+      "Våra rådgivare har erfarenhet av bygglovsprocessen, ritningar och kommunal handläggning. De flesta är arkitekter, byggnadsingenjörer eller kontrollansvariga.",
   },
 ];
 
@@ -134,7 +134,7 @@ export default function FaqSection() {
                     className="mb-4 text-[#29547B]"
                   />
 
-                  <h3 className="font-bold text-[#17212F]">
+                  <h3 className="font-bold text-[#17212F] text-lg">
                     {topic.title}
                   </h3>
 
@@ -169,7 +169,7 @@ export default function FaqSection() {
                     {item.question}
                   </span>
 
-                  <span className="flex size-8 items-center justify-center rounded-full border border-[#B6C1CC] text-[#29547B]">
+                  <span className="flex size-8 items-center justify-center rounded-full border border-[#B6C1CC] text-[#29547B] hover:!bg-[#02060A] hover:text-white">
                     {isOpen ? (
                       <Minus size={16} />
                     ) : (

@@ -10,17 +10,17 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-[#29547B] text-white shadow-sm hover:-translate-y-0.5 hover:bg-[#214663] hover:shadow-md",
+          "bg-[#29547B] text-white shadow-sm hover:bg-[#02060A] hover:shadow-md",
         outline:
-          "border-[#29547B] bg-white text-[#29547B] hover:-translate-y-0.5 hover:bg-[#F1F6FA] hover:shadow-sm",
+          "border-[#29547B] bg-white text-[#29547B] hover:bg-[#F1F6FA] hover:shadow-sm",
         secondary:
-          "bg-[#EEF4FA] text-[#29547B] hover:-translate-y-0.5 hover:bg-[#E1EDF6] hover:shadow-sm",
+          "bg-[#EEF4FA] text-[#29547B] hover:bg-[#E1EDF6] hover:shadow-sm",
         ghost:
           "text-[#29547B] hover:bg-[#EEF4FA]",
         dark:
-          "bg-[#02060A] text-white shadow-sm hover:-translate-y-0.5 hover:bg-[#111827] hover:shadow-md",
+          "bg-[#02060A] text-white shadow-sm hover:bg-[#111827] hover:shadow-md",
         booking:
-          "bg-[#29547B] text-white shadow-md hover:-translate-y-1 hover:bg-[#214663] hover:shadow-xl",
+          "bg-[#29547B] text-white shadow-md hover:bg-[#02060A] hover:shadow-xl",
         link:
           "text-[#29547B] underline-offset-4 hover:underline",
       },

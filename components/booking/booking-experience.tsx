@@ -5,6 +5,7 @@ import {
   ArrowRight,
   Calendar,
   CirclePlus,
+  InfoIcon,
   MessageSquare,
   Mic,
   Search,
@@ -88,13 +89,13 @@ export default function BookingExperience() {
             <div className="absolute size-[390px] rounded-full bg-[#CAD6E0]" />
             <div className="absolute size-[300px] rounded-full bg-[#9FB4C5]/70" />
 
-            <button className="absolute top-10 flex size-16 items-center justify-center rounded-full bg-[#173F6B] text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-[#29547B] hover:shadow-xl">
+            <button className="absolute top-10 flex size-16 items-center justify-center rounded-full bg-[#173F6B] text-white shadow-lg transition-all duration-300 hover:scale-105 hover:!bg-[#02060A] hover:shadow-xl">
               <Mic size={34} />
             </button>
 
             <button
               onClick={() => setProjectOpen(true)}
-              className="absolute left-4 top-64 flex w-72 items-center gap-4 rounded-lg border-2 border-[#17212F] bg-[#29547B] p-5 text-left text-white shadow-md transition-all duration-200 hover:-translate-y-1 hover:bg-[#214663] hover:shadow-xl"
+              className="absolute left-4 top-40 flex w-72 items-center gap-4 rounded-lg border-2 border-[#17212F] bg-[#29547B] p-5 text-left text-white shadow-md transition-all duration-200 hover:!bg-[#02060A] hover:shadow-xl"
             >
               <MessageSquare size={24} />
               <span>
@@ -107,7 +108,7 @@ export default function BookingExperience() {
 
             <button
               onClick={() => setMatchOpen(true)}
-              className="absolute right-4 top-64 flex w-72 items-center gap-4 rounded-lg border-2 border-[#17212F] bg-[#29547B] p-5 text-left text-white shadow-md transition-all duration-200 hover:-translate-y-1 hover:bg-[#214663] hover:shadow-xl"
+              className="absolute right-4 top-40 flex w-72 items-center gap-4 rounded-lg border-2 border-[#17212F] bg-[#29547B] p-5 text-left text-white shadow-md transition-all duration-200 hover:!bg-[#02060A] hover:shadow-xl"
             >
               <Search size={24} />
               <span>
@@ -166,7 +167,7 @@ export default function BookingExperience() {
           <div className="flex items-center justify-between rounded-t-xl bg-[#29547B] px-6 py-4 text-white">
             <CirclePlus size={20} />
             <h3 className="text-2xl font-bold">Rådgivare</h3>
-            <CirclePlus size={20} />
+            <InfoIcon size={20} />
           </div>
 
           <div className="flex-1 overflow-hidden p-5">
@@ -200,7 +201,7 @@ export default function BookingExperience() {
           <div className="p-5">
             <button
               disabled={!canBook}
-              className="w-full rounded-xl bg-[#29547B] px-6 py-8 text-center text-white shadow-md transition-all duration-200 hover:-translate-y-1 hover:bg-[#214663] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:bg-[#29547B] disabled:hover:shadow-md"
+              className="w-full rounded-xl bg-[#29547B] px-6 py-8 text-center text-white shadow-md transition-all duration-200 hover:bg-[#214663] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:bg-[#29547B] disabled:hover:shadow-md"
             >
               <Calendar className="mx-auto mb-3 size-8" />
               <span className="block text-lg font-bold">

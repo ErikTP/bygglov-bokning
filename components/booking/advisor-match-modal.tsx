@@ -20,19 +20,19 @@ const professions = [
   "Arkitekt",
   "Kontrollansvarig",
   "Snickare",
-  "Byggingenjör",
+  "Byggnadsingenjör",
   "Konstruktör",
-  "Projektledare",
+  "Trädgårdsanläggare",
 ];
 
 const services = [
-  "Bygglov",
-  "Bygglovsritning",
-  "Kontrollplan",
-  "Besiktning",
-  "Tillbyggnad",
-  "Nybyggnation",
-  "Attefallshus",
+  "Renovering fasad & fönster",
+  "Mark- och anläggningsarbete",
+  "Installation av värmesystem",
+  "El & Energi",
+  "Byggadministration och dokumentation",
+  "Entrepenadbesiktning",
+  "Inredningsarkitekt",
 ];
 
 const municipalities = [
@@ -77,7 +77,7 @@ export default function AdvisorMatchModal({ open, onClose, onSave }: Props) {
         </button>
 
         <SelectBlock
-          label="Välj tjänst"
+          label="Yrken"
           value={form.profession}
           placeholder="Yrken"
           options={professions}
@@ -85,7 +85,7 @@ export default function AdvisorMatchModal({ open, onClose, onSave }: Props) {
         />
 
         <SelectBlock
-          label="Välj tjänst"
+          label="Tjänster"
           value={form.service}
           placeholder="Tjänster"
           options={services}
@@ -93,14 +93,14 @@ export default function AdvisorMatchModal({ open, onClose, onSave }: Props) {
         />
 
         <SelectBlock
-          label="Välj tjänst"
+          label="Kommuner"
           value={form.municipality}
           placeholder="Kommuner"
           options={municipalities}
           onChange={(value) => update("municipality", value)}
         />
 
-        <div className="mt-16">
+        <div className="mt-16 mb-16">
           <h3 className="mb-10 text-3xl font-bold">Välj kategori</h3>
 
           <div className="grid grid-cols-2 gap-x-28 gap-y-8">
@@ -140,8 +140,7 @@ export default function AdvisorMatchModal({ open, onClose, onSave }: Props) {
         </div>
 
         <button
-          onClick={() => onSave(form)}
-          className="mt-12 w-full rounded-xl bg-[#29547B] py-5 text-xl font-bold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#214663] hover:shadow-lg"
+         className="mt-20 w-full rounded-xl bg-[#29547B] py-5 text-xl font-bold text-white shadow-md transition-all duration-200 hover:bg-[#02060A] hover:shadow-lg"
         >
           Matcha rådgivare
         </button>

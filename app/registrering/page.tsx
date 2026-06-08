@@ -62,7 +62,7 @@ const registrering = () => {
   };
 
   return (
-    <div className="h-full flex items-center justify-center bg-[#18153f]">
+    <div className="h-full flex items-center justify-center bg-[#29547B]">
         <Card className="w-full max-w-150 p-10 shadow-xl">
             <CardHeader>
                 <CardTitle className="text-5xl font-bold text-center">
@@ -134,7 +134,7 @@ const registrering = () => {
                     onClick={() => {}}
                     variant="outline"
                     size="lg"
-                    className="h-16 w-16 bg-slate-300 hover:bg-slate-400 hover:scale-110"
+                    className="h-16 w-16 bg-slate-100 hover:bg-slate-300 hover:scale-110"
                     >
                     <FcGoogle className="size-10 left-2.5 top-2.5" />
                     </Button>
@@ -143,7 +143,7 @@ const registrering = () => {
                     onClick={(e) => handleProvider(e, "github")}
                     variant="outline"
                     size="lg"
-                    className="h-16 w-16 bg-slate-300 hover:bg-slate-400 hover:scale-110"
+                    className="h-16 w-16 bg-slate-100 hover:bg-slate-300 hover:scale-110"
                     >
                     <FaGithub className="size-10 left-2.5 top-2.5" />
                     </Button>

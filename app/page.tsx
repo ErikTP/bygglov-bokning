@@ -48,7 +48,7 @@ export default function Home() {
             <Button
               asChild
               size="lg"
-              className="mt-8 !bg-[#29547B] !text-white hover:!-translate-y-0.5 hover:!bg-[#214663] hover:!shadow-md"
+              className="mt-8 !bg-[#29547B] !text-white hover:!bg-[#02060A] hover:!shadow-md"
             >
               <Link href="/dashboard" className="flex items-center gap-3">
                 Hitta expert
@@ -72,8 +72,8 @@ export default function Home() {
       <section className="mb-4 py-20">
         <div className="mx-auto max-w-7xl px-8">
           <SectionLine
-            left="Så funkar det"
-            right="Ingen tidsbokning, ingen avgift"
+            left="SÅ FUNKAR DET"
+            right="INGEN TIDSBOKNING, INGEN AVGIFT"
           />
 
           <h2 className="mt-20 text-4xl font-bold">
@@ -123,8 +123,8 @@ export default function Home() {
       <section className="pb-20">
         <div className="mx-auto max-w-7xl px-8">
           <SectionLine
-            left="Så funkar det"
-            right="Ingen tidsbokning, ingen avgift"
+            left="BOKNINGSSYSTEM"
+            right="AI-ASSISTENT, FÖR RÄTT EXPERTIS"
           />
 
           <h2 className="mt-20 text-4xl font-bold">
@@ -132,8 +132,7 @@ export default function Home() {
           </h2>
 
           <p className="mt-4 max-w-xl text-[#667085]">
-            Boka rätt expertis – När du är redo kopplas du automatiskt ihop med
-            den rådgivare som bäst matchar ditt specifika projekt.
+            Boka rätt expertis med AI-stöd – Låt vår AI analysera ditt ärende och föreslå den rådgivare som matchar din profil perfekt. Välj själv eller låt oss guida dig – boka sedan ditt möte med ett enda klick
           </p>
 
           <BookingExperience />
