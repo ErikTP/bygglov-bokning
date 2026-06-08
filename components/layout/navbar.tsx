@@ -90,28 +90,7 @@ const Navbar = () => {
 
             <div className="my-2 h-px bg-[#E5EAF0]" />
 
-            <Link
-              href="/inloggning"
-              onClick={() => setMobileOpen(false)}
-              className="mb-2 flex h-8 w-full items-center justify-center gap-2 rounded-md border border-[#D8E0E8] bg-white px-2 text-xs font-semibold text-[#17212F] transition hover:!bg-[#e6f2fd] hover:shadow-sm"
-            >
-              <Image
-                src="/images/Bank-ID.png"
-                alt="BankID"
-                width={16}
-                height={16}
-                className="h-4 w-4 object-contain"
-              />
-              Logga in
-            </Link>
-
-            <Link
-              href="/registrering"
-              onClick={() => setMobileOpen(false)}
-              className="flex h-8 w-full items-center justify-center rounded-md !bg-[#29547B] px-2 text-xs font-semibold text-white shadow-sm transition hover:!bg-[#02060A] hover:shadow-md"
-            >
-              Anslut dig
-            </Link>
+            <UserButton mobile />
           </div>
         )}
       </div>

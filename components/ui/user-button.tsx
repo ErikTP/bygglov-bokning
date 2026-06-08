@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
-import { Loader } from "lucide-react";
+import { Loader, LayoutDashboard } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -54,13 +54,20 @@ const UserButton = ({ mobile = false }: { mobile?: boolean }) => {
         </DropdownMenuTrigger>
 
         <DropdownMenuContent align="end" side="bottom" className="w-48">
-          <DropdownMenuItem
-            className="cursor-pointer"
-            onClick={handleSignOut}
-          >
-            Logga ut
-          </DropdownMenuItem>
-        </DropdownMenuContent>
+        <DropdownMenuItem asChild className="cursor-pointer">
+          <Link href="/dashboard" className="flex items-center gap-2">
+            <LayoutDashboard size={16} />
+            Dashboard
+          </Link>
+        </DropdownMenuItem>
+
+        <DropdownMenuItem
+          className="cursor-pointer"
+          onClick={handleSignOut}
+        >
+          Logga ut
+        </DropdownMenuItem>
+      </DropdownMenuContent>
       </DropdownMenu>
     );
   }
